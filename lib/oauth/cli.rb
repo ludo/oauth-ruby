@@ -331,16 +331,7 @@ module OAuth
       end
 
       querystring = escaped_pairs * "&"
-      cli_params = CGI.parse(querystring)
-
-      {
-        "oauth_consumer_key"     => options[:oauth_consumer_key],
-        "oauth_nonce"            => options[:oauth_nonce],
-        "oauth_timestamp"        => options[:oauth_timestamp],
-        "oauth_token"            => options[:oauth_token],
-        "oauth_signature_method" => options[:oauth_signature_method],
-        "oauth_version"          => options[:oauth_version]
-      }.reject { |k,v| v.nil? || v == "" }.merge(cli_params)
+      CGI.parse(querystring)
     end
 
     def sufficient_options?
